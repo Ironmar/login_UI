@@ -7,6 +7,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String _email = '';
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final _screenSize = MediaQuery.of(context).size;
@@ -85,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
               )
             ]),
         child: Form(
+          key: _formKey,
           child: Column(
             children: [
               TextFormField(
@@ -109,6 +111,14 @@ class _LoginPageState extends State<LoginPage> {
                   });
                 },
               ),
+              RaisedButton(
+                onPressed: () {
+                  if (_formKey.currentState.validate()) {
+                    print('Sending Data');
+                  }
+                },
+                child: Text('Enviar'),
+              )
             ],
           ),
         ),
